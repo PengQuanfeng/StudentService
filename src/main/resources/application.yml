@@ -1,0 +1,30 @@
+server:
+  port: 8099    #default port where the service will be started
+#port: 8089
+swagger:
+  base-package: elephant.studentservice.student
+eureka:         #tells about the Eureka server details and its refresh time
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+spring:
+  application:
+    name: student-service   #current service name to be used by the eureka server
+  zipkin:
+    base-url: http://localhost:8081
+
+management:
+  security:
+    enabled: false  #disable the spring security on the management endpoints like /env, /refresh etc.
+
+logging:
+  level:
+    com.example.howtodoinjava: DEBUG
